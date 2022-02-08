@@ -9,22 +9,18 @@ const Layout = () => {
   const [total, setTotal] = useState([0, 0]);
 
   const onAdd = (item) => {
-    if (list.includes(item)){
+    if (list.includes(item)) {
       let tempArr = [...list];
       tempArr[tempArr.indexOf(item)].quantity += 1;
-    setList(tempArr);
-    console.log(list);
+      setList(tempArr);
+      console.log(list);
     } else {
-    let tempArr = [...list];
-    tempArr.push(item);
-    setList(tempArr);
-    console.log(list);
+      let tempArr = [...list];
+      tempArr.push(item);
+      setList(tempArr);
+      console.log(list);
     }
   };
-
-  useEffect(() => {
-    updateTotal();
-  }, [, list]);
 
   const handleRemove = (item) => {
     console.log("r" + item);
@@ -55,6 +51,10 @@ const Layout = () => {
     });
     setTotal([currentTotal.toFixed(2), currentQuantity]);
   };
+
+  useEffect(() => {
+    updateTotal();
+  }, [list]);
 
   useEffect(() => {
     handleFetch();
