@@ -42,31 +42,31 @@ const Layout = () => {
     console.log(temp_array);
   };
 
-  const updateTotal = () => {
-    let currentTotal = 0;
-    let currentQuantity = 0;
-    list.forEach((e) => {
-      currentTotal = currentTotal + e.price * e.quantity;
-      currentQuantity = currentQuantity + e.quantity;
-    });
-    setTotal([currentTotal.toFixed(2), currentQuantity]);
-  };
+  
 
   useEffect(() => {
-    updateTotal();
+    const updateTotal = () => {
+      let currentTotal = 0;
+      let currentQuantity = 0;
+      list.forEach((e) => {
+        currentTotal = currentTotal + e.price * e.quantity;
+        currentQuantity = currentQuantity + e.quantity;
+      });
+      setTotal([currentTotal.toFixed(2), currentQuantity]);
+    };
   }, [list]);
 
   useEffect(() => {
-    handleFetch();
+    const handleFetch = async () => {
+      const response = await fetch(
+        "https://api.thecatapi.com/v1/images/search?limit=10"
+      );
+      const data = await response.json();
+      handleData(data);
+    };
   }, []);
 
-  const handleFetch = async () => {
-    const response = await fetch(
-      "https://api.thecatapi.com/v1/images/search?limit=10"
-    );
-    const data = await response.json();
-    handleData(data);
-  };
+
 
   const handleData = (data) => {
     let tempArr = [];
