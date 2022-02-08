@@ -45,7 +45,6 @@ const Layout = () => {
   
 
   useEffect(() => {
-    const updateTotal = () => {
       let currentTotal = 0;
       let currentQuantity = 0;
       list.forEach((e) => {
@@ -53,17 +52,14 @@ const Layout = () => {
         currentQuantity = currentQuantity + e.quantity;
       });
       setTotal([currentTotal.toFixed(2), currentQuantity]);
-    };
   }, [list]);
 
   useEffect(() => {
-    const handleFetch = async () => {
       const response = await fetch(
         "https://api.thecatapi.com/v1/images/search?limit=10"
       );
       const data = await response.json();
       handleData(data);
-    };
   }, []);
 
 
